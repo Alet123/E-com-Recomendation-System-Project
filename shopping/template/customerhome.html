@@ -1,0 +1,204 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 20px;
+}
+</style>
+<!-- <center>
+<div style="margin: 50px;">
+    <hr><h1>Recent Product</h1><hr>
+    
+        {% for d in data %}
+        <table style="margin: 10px; width:600px">
+            <tr>
+                <td><img src="../{{d.6}}" height="200px" width="200px"></td>
+                <td>
+                    <h1>{{d.3}}</h1>
+                    Rs.{{d.5}}/-
+                    <a href="/customerviewproduct?id={{d.0}}">View product...</a>
+                </td>
+            </tr>
+        </table><hr>
+        {% endfor %}
+    
+</div>
+</center> -->
+<div class="buy-now">
+    <div class="container">
+    <div class="heading-setion-w3ls">
+        <h3 class="title-w3layouts">Recent products <i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell" aria-hidden="true"></i></h3>
+    </div>
+            <div class="team-grids">
+                <!-- Bottom to top-->
+                <div class="details-top-w3ls">
+                    {% for i in data %}
+                    <div class="col-md-3 team-grid">
+                        <!-- normal -->
+                        <div class="ih-item circle effect10 bottom_to_top">
+                            <div class="img"><img style="padding: 25px;" src="../{{i.6}}" alt="img">
+                                <!-- <span style="color:black">{{i.3}}</span> -->
+                            </div>
+                            <div class="info">
+                                <h3>Rs.{{i.5}}</h3>
+                                <ul>
+                                    
+                                    <li class="cary-li-w3-agileits">
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                   <a href="/customerviewproduct?id={{i.0}}"><input type="button" name="submit" value="View details" class="button" /></a>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- end normal -->
+                    </div>
+                   {% endfor %}
+                </div>
+               
+                <!-- end Bottom to top-->
+            </div>
+            
+        </div>
+        <br>
+        <a href="/customerallproducts" style="margin: 30px 100px;">View more...</a>
+</div>
+{% if recomend %}
+<div class="buy-now">
+    <div class="container">
+    <div class="heading-setion-w3ls">
+        <h3 class="title-w3layouts">Recommendations for you <i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell" aria-hidden="true"></i></h3>
+    </div>
+            <div class="team-grids">
+                <!-- Bottom to top-->
+                <div class="details-top-w3ls">
+                    {% for i in recomend %}
+                    <div class="col-md-3 team-grid">
+                        <!-- normal -->
+                        <div class="ih-item circle effect10 bottom_to_top">
+                            <div class="img"><img src="../{{i.6}}" alt="img">
+                                <!-- <span>{{i.3}}</span> -->
+                            </div>
+                            <div class="info">
+                                <h3>Rs.{{i.5}}</h3>
+                                <ul>
+                                    
+                                    <li class="cary-li-w3-agileits">
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                   <a href="/customerviewproduct?id={{i.0}}"><input type="button" name="submit" value="View details" class="button" /></a>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end normal -->
+                       
+                    </div>
+                   {% endfor %}
+                </div>
+               
+                <!-- end Bottom to top-->
+            </div>
+        </div>
+</div>
+<br><br>
+{% endif %}
+{% if mostselling %}
+<div class="buy-now">
+    <div class="container">
+    <div class="heading-setion-w3ls">
+        <h3 class="title-w3layouts">Most selling items <i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell" aria-hidden="true"></i></h3>
+    </div>
+            <div class="team-grids">
+                <!-- Bottom to top-->
+                <div class="details-top-w3ls">
+                    {% for i in mostselling %}
+                    <div class="col-md-3 team-grid">
+                        <!-- normal -->
+                        <div class="ih-item circle effect10 bottom_to_top">
+                            <div class="img"><img src="../{{i.6}}" alt="img">
+                                <!-- <span>{{i.3}}</span> -->
+                            </div>
+                            <div class="info">
+                                <h3>Rs.{{i.5}}</h3>
+                                <ul>
+                                    
+                                    <li class="cary-li-w3-agileits">
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                   <a href="/customerviewproduct?id={{i.0}}"><input type="button" name="submit" value="View details" class="button" /></a>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end normal -->
+                       
+                    </div>
+                   {% endfor %}
+                </div>
+               
+                <!-- end Bottom to top-->
+            </div>
+        </div>
+</div>
+<br><br>
+{% endif %}
+{% if recent %}
+<div class="buy-now">
+    <div class="container">
+    <div class="heading-setion-w3ls">
+        <h3 class="title-w3layouts">Recently viewed <i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell" aria-hidden="true"></i></h3>
+    </div>
+            <div class="team-grids">
+                <!-- Bottom to top-->
+                <div class="details-top-w3ls">
+                    {% for i in recent %}
+                    <div class="col-md-3 team-grid">
+                        <!-- normal -->
+                        <div class="ih-item circle effect10 bottom_to_top">
+                            <div class="img"><img src="../{{i.6}}" alt="img">
+                                <!-- <span>{{i.3}}</span> -->
+                            </div>
+                            <div class="info">
+                                <h3>Rs.{{i.5}}</h3>
+                                <ul>
+                                    
+                                    <li class="cary-li-w3-agileits">
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                   <a href="/customerviewproduct?id={{i.0}}"><input type="button" name="submit" value="View details" class="button" /></a>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end normal -->
+                       
+                    </div>
+                   {% endfor %}
+                </div>
+               
+                <!-- end Bottom to top-->
+            </div>
+        </div>
+</div>
+<br><br>
+{% endif %}
+
+{% endblock %}

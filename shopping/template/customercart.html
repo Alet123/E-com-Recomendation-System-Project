@@ -1,0 +1,51 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <hr><h3>Cart</h3><hr>
+    
+    <table border="1" style="margin: 50px; width: 800px;">
+        <tr>
+            <th>PRODUCT</th>
+
+            <th>RATE</th>
+            <th colspan="2">IMAGE</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.1}}</td>
+
+            <td>{{d.2}}</td>
+            <td><img src="../{{d.3}}" height="200px" width="200px"></td>
+            <!-- <td><a href="/deletecart?id={{d.0}}">DELETE</a></td> -->
+            </tr>
+        {% endfor %}
+    </table>
+    {% if data %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" name="btnsubmit" class="btn btn-danger" value="Empty cart">
+    </form>
+    {% endif %}
+</div>
+</center>
+
+    
+<script>
+    
+   
+ 
+
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        // location.href="/adminproduct";
+    }
+</script>
+{% endblock %}

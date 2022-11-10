@@ -1,0 +1,136 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <hr><h3>Product</h3><hr>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select class="form-control" id="cat" name="cat">
+                        <option>Select category</option>
+                        {% for c in category %}
+                        <option value="{{c.0}}">{{c.1}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Subcategory</td>
+                <td>
+                    <select class="form-control" id="subcat" name="subcat">
+                       
+                        <option value="0">Select subcategory</option>
+                        
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>
+                    <select class="form-control" name="brand">
+                        <option>Select brand</option>
+                        {% for c in brand %}
+                        <option value="{{c.0}}">{{c.1}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Product</td>
+                <td><input type="text" class="form-control" pattern="[a-zA-Z0-9 ]+" name="txtProduct" required></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" class="form-control" name="txtDesc" required></td>
+            </tr>
+            <tr>
+                <td>Rate</td>
+                <td><input type="text" class="form-control" pattern="[0-9]+" name="txtRate" required></td>
+            </tr>
+            <tr>
+                <td>Upload file</td>
+                <td><input type="file" class="form-control"  name="txtFile" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-danger" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+    <table border="1" style="margin: 50px;">
+        <tr>
+            <th>ID</th>
+            <th>CATEGORY</th>
+            <th>SUBCATEGORY</th>
+            <th>BRAND</th>
+            <th>PRODUCT</th>
+            <th>DESCRIPTION</th>
+            <th>RATE</th>
+            <th colspan="2">IMAGE</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.7}}</td>
+            <td>{{d.8}}</td>
+            <td>{{d.9}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td><img src="../{{d.6}}" height="100px" width="100px"></td>
+            <td><a href="/deleteproduct?id={{d.0}}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</center>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script>
+    
+    $(document).ready(function(){
+        $("#cat").change(function(){
+            var y=$("#cat").val()
+            $.ajax({
+                url: "/getsub?id="+y,
+                type:'GET',
+                success: function(data) 
+                { 
+                    // // alert(data);
+                    // var res=$.parseJSON(res);
+                    
+                    // $.each(res.d, function (data, value)  {   
+                    //     // alert(o); 
+                    //     $("#subcat").append($("<option style='color:black;'></option>").val(value.subid).html(value.subcategory));  
+                    // });
+                    // alert(data);
+                    var jsondata=$.parseJSON(data);
+                    
+                    $(jsondata).each(function (index, o) {   
+                        // alert(o); 
+                        $('#subcat').append($('<option></option').text(o).attr('value', o));
+                    });
+                }
+            });
+        });
+        
+    });
+  
+ 
+
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        location.href="/adminproduct";
+    }
+</script>
+{% endblock %}

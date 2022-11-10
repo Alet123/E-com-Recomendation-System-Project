@@ -1,0 +1,93 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 20px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <hr><h1>Product details</h1><hr>
+    <form method="POST">
+        {% csrf_token %}
+    <table style="margin: 10px; width: 650px;">
+        {% for d in data %}
+        
+            <tr>
+                <td>
+                    <img src="../{{d.6}}" height="200px" width="200px"><br><br>
+                   <h3> Rs.{{d.5}}/-</h3>
+                   {% if rating == 5 %}
+                                <img src="../static/images/filledstar.png" height="20px" width="20px">
+                                <img src="../static/images/filledstar.png" height="20px" width="20px">
+                                <img src="../static/images/filledstar.png" height="20px" width="20px">
+                                <img src="../static/images/filledstar.png" height="20px" width="20px">
+                                <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            {% elif rating == 4 %}
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            {% elif rating == 3 %}
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            {% elif rating == 2 %}
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            {% elif rating == 1 %}
+                            <img src="../static/images/filledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            {% elif rating == 0 %}
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            <img src="../static/images/unfilledstar.png" height="20px" width="20px">
+                            {% endif %}
+                </td>
+                <td>
+                    <h1>{{d.3}}</h1>
+                    <p>{{d.4}}</p><br>
+                    <input type="submit" class="btn btn-danger" name="cart" value="ADD TO CART"></a>
+                </td>
+            </tr>
+        
+        {% endfor %}
+    </table>
+    <input type="submit" class="btn btn-danger" name="review" value="Write a review"></a>
+
+</form>
+<br><hr>
+<h3>Customer reviews</h3><hr>
+<table align="left" style="margin-left: 50px;">
+    {% for i in feedback %}
+    <tr>
+        <td>{{i.0}} : {{i.1}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</center>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script>
+    
+    
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        location.href="/adminproduct";
+    }
+</script>
+{% endblock %}

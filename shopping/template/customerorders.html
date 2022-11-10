@@ -1,0 +1,49 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <hr><h3>Orders</h3><hr>
+    
+    <table border="1" style="margin: 50px; width: 800px;">
+        <tr>
+            <th>ORDER ID</th>
+            <th>DATE</th>
+            <th>PRODUCT</th>
+            <th>RATE</th>
+            <th>IMAGE</th>
+          
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td><img src="../{{d.3}}" height="200px" width="200px"></td>
+            
+            </tr>
+        {% endfor %}
+    </table>
+   
+</div>
+</center>
+
+    
+<script>
+    
+   
+ 
+
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        // location.href="/adminproduct";
+    }
+</script>
+{% endblock %}

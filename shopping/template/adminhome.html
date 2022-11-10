@@ -1,0 +1,22 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<center>
+<div style="margin: 50px;">
+    <hr><h3>Welcome</h3><hr>
+    
+</div>
+</center>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        location.href="/adminbrand";
+    }
+</script>
+{% endblock %}
